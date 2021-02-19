@@ -1,0 +1,14 @@
+/*.main-url {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 10px;
+}*/
+.main-url a{
+  background-color: #eee8aa;
+  margin: 5px 10px;
+}
+
+.h3-title-name{
+  color: #ff6b81;
+}
