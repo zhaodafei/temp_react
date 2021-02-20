@@ -29,6 +29,8 @@ export default class study03 extends React.Component {
                     note: 'Hi there!',
                 });
                 return;
+            default:
+                return;
         }
     };
 
