@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link,NavLink } from 'react-router-dom';
 
-
+// 这是一个无状态组件,可以提升性能
 const GeneralIndex = () => (
     <>
        <div>
