@@ -8,24 +8,26 @@ export default class study02 extends React.Component {
 
     state = {
         foo: "hello fei",
-        bookList_temp: ["a",'b','c'],
-        ...store.getState(), // 引入 redux(store) 中的值
+        book_temp: ["a1",'b2','c3'],
+        storeFei: store.getState(), // 引入 redux(store) 中的值
     };
 
     handleClickAdd = () => {
-        console.log('handleClickAdd');
-        // store.dispatch({type:"ddd",data:"aaaaaaaaa"})
         const action = {type: "newTypeFun", value: "new_论语"};
-        store.dispatch(action);
-        console.log(store.getState()); // 改变以后的值
-        // this.setState({...store.getState()}); // 解决页面中没有变化
+        store.dispatch(action); 
+        // console.log("修改完成",store.getState()); // 改变以后的值
+        this.handelStoreChange();
     };
-    
+    handelStoreChange = () => {
+        this.setState({
+            storeFei: store.getState()
+        })
+    };
+
+    // '论语', '史记', '左传', '汉书', '战国策'
+    // '孔子', '司马迁', '左丘明', '班固', '未知'
     render() {
-        console.log(store.getState());
-        console.log(this.state);
-        // '论语', '史记', '左传', '汉书', '战国策'
-        // '孔子', '司马迁', '左丘明', '班固', '未知'
+        const {inputValue,bookList} = store.getState();
         return (
             <div>
                 <h3 className="h3-title-name">我是 study04 页</h3>
@@ -35,17 +37,19 @@ export default class study02 extends React.Component {
                     <Link to="/general-index">首页-Page</Link>  <br /><br />
                 </div>
                 <div>
+                    <p>{this.state.storeFei.inputValue}</p>
                     书名: 
-                    <Input placeholder={this.state.inputValue} style={{width:"200px",marginRight:"10px"}} />
+                    <Input placeholder={this.state.storeFei.inputValue} style={{width:"200px",marginRight:"10px"}} />
                     <Button type="primary" onClick={this.handleClickAdd}>
-                        添加        拖鞋,交易纠纷, 京东客服,  多久出结果
+                        添加
                     </Button>
                 </div>
+                <div>{this.state.book_temp}</div>
                 <div style={{width:"200px",margin:"10px"}}>
                     <List
                         header={<div style={{color: "#ffd700"}}>我是 Header</div>}
                         footer={<div style={{color: "#ffd700"}}>我是 Footer</div>}
-                        dataSource={this.state.bookList}
+                        dataSource={bookList}
                         renderItem={item => (
                             <List.Item>{item}</List.Item>
                         )}/>
