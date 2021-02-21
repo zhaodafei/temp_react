@@ -33,11 +33,19 @@ function feiValue(state = defaultState.feiValue, action) { // todo: feiValue() �
 }
 
 function bookList (state = defaultState.bookList, action) {
-    // console.log("我是ok__pageTitle",action);
+    console.log("我是ok__pageTitle",action);
     // 不同的action有不同的处理逻辑
      switch (action.type) {
          case 'SET_BOOK_LIST_FUN':
-             return action.data;
+             /*let newState = JSON.parse(JSON.stringify(state)); // 使用深拷贝
+             newState.bookList.push(action.data);
+             action.data = "";*/
+             let newBookList = JSON.parse(JSON.stringify(state)); // 使用深拷贝
+             newBookList.push(action.data);
+             action.data = "";
+             return newBookList;
+         case 'DEL_BOOK_LIST_FUN':
+             return state;
          default:
              return state
      }
